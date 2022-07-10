@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkBilgisayarProject.Data.Migrations
 {
     [DbContext(typeof(LinkAppDbContext))]
-    [Migration("20220710025841_Intial")]
-    partial class Intial
+    [Migration("20220710125540_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
