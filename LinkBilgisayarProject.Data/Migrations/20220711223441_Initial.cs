@@ -1,11 +1,11 @@
-﻿ using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace LinkBilgisayarProject.Data.Migrations
 {
-    public partial class first : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,8 +107,10 @@ namespace LinkBilgisayarProject.Data.Migrations
                 columns: new[] { "Id", "ActivityDate", "CustomerId", "Price", "ServiceDescription" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
-                    { 2, new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" }
+                    { 1, new DateTime(2022, 7, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
+                    { 2, new DateTime(2022, 7, 12, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" },
+                    { 3, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10m, "Kılıç bilendi " },
+                    { 4, new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 80m, "Kaymak birasi satıldı" }
                 });
 
             migrationBuilder.InsertData(
@@ -117,7 +119,9 @@ namespace LinkBilgisayarProject.Data.Migrations
                 values: new object[,]
                 {
                     { 1, 1, "AragornUrlReport" },
-                    { 2, 2, "HarryReport" }
+                    { 2, 2, "HarryReport" },
+                    { 3, 2, "HarryReport2.url" },
+                    { 4, 1, "Aragornreport2.url" }
                 });
 
             migrationBuilder.CreateIndex(

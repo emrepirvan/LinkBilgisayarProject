@@ -67,5 +67,17 @@ namespace LinkBilgisayarProject.API.Controllers
             await _service.RemoveAsync(commercialActivity);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
+        [HttpDelete]
+        public async Task<IActionResult> RemoveRange(int[] id)
+        {
+            List<CommercialActivity> ca = new List<CommercialActivity>();
+            foreach (var item in id)
+            {
+                var commercialActivity = await _service.GetByIdAsync(item);
+                ca.Add(commercialActivity);
+            }
+            await _service.RemoveRangeAsync(ca);
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+        }
     }
 }

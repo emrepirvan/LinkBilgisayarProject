@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkBilgisayarProject.Data.Migrations
 {
     [DbContext(typeof(LinkAppDbContext))]
-    [Migration("20220710125540_first")]
-    partial class first
+    [Migration("20220711223441_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ActivityDate = new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 1,
                             Price = 8800m,
                             ServiceDescription = "Kırık Kılıç onarıldı"
@@ -63,10 +63,26 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 2,
-                            ActivityDate = new DateTime(2022, 7, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 2,
                             Price = 2300m,
                             ServiceDescription = "Baykuş satıldı"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActivityDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerId = 1,
+                            Price = 10m,
+                            ServiceDescription = "Kılıç bilendi "
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ActivityDate = new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerId = 2,
+                            Price = 80m,
+                            ServiceDescription = "Kaymak birasi satıldı"
                         });
                 });
 
@@ -210,6 +226,18 @@ namespace LinkBilgisayarProject.Data.Migrations
                             Id = 2,
                             CustomerId = 2,
                             ReportUrl = "HarryReport"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 2,
+                            ReportUrl = "HarryReport2.url"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CustomerId = 1,
+                            ReportUrl = "Aragornreport2.url"
                         });
                 });
 
