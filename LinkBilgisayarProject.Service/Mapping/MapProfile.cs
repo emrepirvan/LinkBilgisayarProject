@@ -14,6 +14,8 @@ namespace LinkBilgisayarProject.Service.Mapping
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<CommercialActivity,CommercialActivityWithCustomerDto>().ReverseMap();
             CreateMap<Customer, CustomerWithCommercialAcitivityDto>();
+            CreateMap<UserApp,UserAppDto>().ReverseMap();
+            CreateMap<RoleApp, RoleAppDto>().ReverseMap();
         }
     }
 }
