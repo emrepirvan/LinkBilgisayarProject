@@ -26,11 +26,6 @@ namespace LinkBilgisayarProject.Data.Repositories
             await _dbSet.AddAsync(entity);
         }
 
-        public async Task AddRangeAsync(IEnumerable<T> entities)
-        {
-            await _dbSet.AddRangeAsync(entities);
-        }
-
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AnyAsync(expression);

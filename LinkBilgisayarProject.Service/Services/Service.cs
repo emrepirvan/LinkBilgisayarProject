@@ -32,13 +32,6 @@ namespace LinkBilgisayarProject.Service.Services
             return entity;
         }
 
-        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
-        {
-            await _repository.AddRangeAsync(entities);
-            await _unitOfWork.CommitAsync();
-            return entities;
-        }
-
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _repository.AnyAsync(expression);
@@ -55,14 +48,20 @@ namespace LinkBilgisayarProject.Service.Services
 
             if (hasCustomer == null)
             {
-                throw new NotFoundExcepiton($"{typeof(T).Name}({id}) not found");
+                throw new CustomException($"{typeof(T).Name}({id}) not found");  /////--------------------------
             }
             return hasCustomer;
         }
 
         public async Task RemoveAsync(T entity)
         {
+
+            if (entity == null)
+            {
+                throw new CustomException($"{typeof(T).Name} not found");  /////--------------------------
+            }
             _repository.Remove(entity);
+
             await _unitOfWork.CommitAsync();
         }
 

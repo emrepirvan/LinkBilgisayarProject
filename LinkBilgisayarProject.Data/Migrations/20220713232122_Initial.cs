@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LinkBilgisayarProject.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -242,6 +242,15 @@ namespace LinkBilgisayarProject.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "AdminId", "eebec030-e715-415d-a60e-c7e736646a76", "Admin", "ADMIN" },
+                    { "EditorId", "94be797d-569c-4f10-b029-75804e0e8acc", "Editor", "EDITOR" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "City", "Email", "Name", "PhoneNumber", "PhotoUrl", "Surname" },
                 values: new object[,]
@@ -265,8 +274,8 @@ namespace LinkBilgisayarProject.Data.Migrations
                 columns: new[] { "Id", "ActivityDate", "CustomerId", "Price", "ServiceDescription" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 7, 13, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
-                    { 2, new DateTime(2022, 7, 13, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" },
+                    { 1, new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
+                    { 2, new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" },
                     { 3, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10m, "Kılıç bilendi " },
                     { 4, new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 80m, "Kaymak birasi satıldı" }
                 });

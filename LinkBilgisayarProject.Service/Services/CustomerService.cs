@@ -4,6 +4,7 @@ using LinkBilgisayarProject.Core.Entites;
 using LinkBilgisayarProject.Core.Repositories;
 using LinkBilgisayarProject.Core.Services;
 using LinkBilgisayarProject.Core.UnitOfWorks;
+using LinkBilgisayarProject.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace LinkBilgisayarProject.Service.Services
         public async Task<CustomerWithCommercialAcitivityDto> GetOneCustomerByIdWithCommercialActivitiesAsync(int customerId)
         {
             var customer = await _customerRepository.GetOneCustomerByIdWithCommercialActivityAsync(customerId);
+            if (customer == null)
+            {
+                throw new CustomException($"{typeof(Customer).Name}({customerId}) not found");
+            }
             var customerDto = _mapper.Map<CustomerWithCommercialAcitivityDto>(customer);
 
             return customerDto;

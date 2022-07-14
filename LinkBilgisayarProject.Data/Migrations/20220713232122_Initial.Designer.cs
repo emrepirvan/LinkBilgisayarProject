@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LinkBilgisayarProject.Data.Migrations
 {
     [DbContext(typeof(LinkAppDbContext))]
-    [Migration("20220713020542_initial")]
-    partial class initial
+    [Migration("20220713232122_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ActivityDate = new DateTime(2022, 7, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 1,
                             Price = 8800m,
                             ServiceDescription = "Kırık Kılıç onarıldı"
@@ -63,7 +63,7 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 2,
-                            ActivityDate = new DateTime(2022, 7, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 2,
                             Price = 2300m,
                             ServiceDescription = "Baykuş satıldı"
@@ -169,6 +169,22 @@ namespace LinkBilgisayarProject.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "AdminId",
+                            ConcurrencyStamp = "eebec030-e715-415d-a60e-c7e736646a76",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "EditorId",
+                            ConcurrencyStamp = "94be797d-569c-4f10-b029-75804e0e8acc",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        });
                 });
 
             modelBuilder.Entity("LinkBilgisayarProject.Core.Entites.User", b =>
