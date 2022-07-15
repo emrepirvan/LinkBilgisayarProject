@@ -40,14 +40,7 @@ namespace LinkBilgisayarProject.API.Controllers
             return Ok(CustomResponseDto<List<CustomerDto>>.Success(200, customersDtos));
         }
 
-        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
-        [HttpPut("[action]")]
-        public async Task<IActionResult> UpdatePhoto(CustomerUpdatePhotoDto customerUpdatePhotoDto)
-        {
-          var rup =  _service.Where(x => x.Id == customerUpdatePhotoDto.Id);
-            await _service.UpdateAsync(_mapper.Map<Customer>(rup));
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-        }
+
 
 
         //-------------------------------------------------------

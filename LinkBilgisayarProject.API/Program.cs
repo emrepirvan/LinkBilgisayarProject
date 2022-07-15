@@ -44,7 +44,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 //----------------------------------------------------------------
 builder.Services.AddDbContext<LinkAppDbContext>(x =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+    x.UseNpgsql(builder.Configuration.GetConnectionString("NpgConnection"), option =>
     {
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(LinkAppDbContext)).GetName().Name);
     });
@@ -108,11 +108,15 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 //----------------------------------------------------------------------------------------------
 
+
+
 builder.Services.AddControllers().AddFluentValidation(options =>
 {
     options.RegisterValidatorsFromAssemblyContaining<Program>();
 });
 #endregion
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var app = builder.Build();
 
 #region UseExceptionHandler
