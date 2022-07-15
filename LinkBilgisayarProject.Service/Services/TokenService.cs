@@ -37,14 +37,22 @@ namespace LinkBilgisayarProject.Service.Services
         }
         private IEnumerable<Claim> GetClaim(UserApp userApp, List<string> audiences)
         {
+
+            var userRoles = _userManager.GetRolesAsync(userApp);
             var userList = new List<Claim>
             {
+                //new Claim(ClaimTypes.Role,userApp.UserRole),
                 new Claim(ClaimTypes.NameIdentifier, userApp.Id),
                 new Claim(JwtRegisteredClaimNames.Email, userApp.Email),
                 new Claim(ClaimTypes.Name,userApp.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
+            foreach (var userrole in userRoles.Result)
+            {
+                userList.Add(new Claim (ClaimTypes.Role,userrole));
+            };
             userList.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
+            
 
             return userList;
         }
@@ -66,8 +74,14 @@ namespace LinkBilgisayarProject.Service.Services
             var securityKey = SignService.GetSymmetricSecurityKey(_customTokenOption.SecurityKey);
 
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            //--------------------------------
+
+            //var userRoles = _userManager.GetRolesAsync(userApp);
+
+
 
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
+                
                 issuer: _customTokenOption.Issuer,
                 expires: accessTokenExpiration,
                 notBefore: DateTime.Now,

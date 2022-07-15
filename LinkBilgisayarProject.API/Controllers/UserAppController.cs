@@ -21,7 +21,7 @@ namespace LinkBilgisayarProject.API.Controllers
         {
             return CreateActionResult(await _userService.CreateUserAsync(createUserDto));
         }
-        [Authorize]
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpGet]
         public async Task<IActionResult> GetUser()
         {

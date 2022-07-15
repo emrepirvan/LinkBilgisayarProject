@@ -21,7 +21,6 @@ namespace LinkBilgisayarProject.Data
         public DbSet<UserRefreshToken>  UserRefreshTokens { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<WeeklyReport> WeeklyReports { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<CommercialActivity> CommercialActivities { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

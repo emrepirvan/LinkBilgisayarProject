@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace LinkBilgisayarProject.Service.Services
 {
     public class AuthenticationService : IAuthenticationService
@@ -22,14 +23,16 @@ namespace LinkBilgisayarProject.Service.Services
         private readonly UserManager<UserApp> _userManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericRepository<UserRefreshToken> _userRefreshTokenService;
+        //private readonly RoleManager<UserApp> _roleManager;
 
-        public AuthenticationService(IOptions<List<Client>> optionClients, ITokenService tokenService, UserManager<UserApp> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> serviceGeneric)
+        public AuthenticationService(IOptions<List<Client>> optionClients, ITokenService tokenService, UserManager<UserApp> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> serviceGeneric/*, RoleManager<UserApp> roleManager*/)
         {
             _clients = optionClients.Value;
             _tokenService = tokenService;
             _userManager = userManager;
             _unitOfWork = unitOfWork;
             _userRefreshTokenService = serviceGeneric;
+            //_roleManager = roleManager;
         }
 
         public async Task<CustomResponseDto<TokenDto>> CreateTokenAsync(LoginDto loginDto)
@@ -47,6 +50,7 @@ namespace LinkBilgisayarProject.Service.Services
             {
                 return CustomResponseDto<TokenDto>.Fail( 400, "Email or Password is wrong ", true);
             }
+
             var token = _tokenService.CreateToken(user);
 
             var userRefreshToken = await _userRefreshTokenService.Where(x => x.UserId == user.Id).SingleOrDefaultAsync();

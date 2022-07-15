@@ -80,21 +80,6 @@ namespace LinkBilgisayarProject.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: true, defaultValue: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -242,40 +227,22 @@ namespace LinkBilgisayarProject.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "AdminId", "eebec030-e715-415d-a60e-c7e736646a76", "Admin", "ADMIN" },
-                    { "EditorId", "94be797d-569c-4f10-b029-75804e0e8acc", "Editor", "EDITOR" }
-                });
+                table: "Customers",
+                columns: new[] { "Id", "City", "Email", "Name", "PhoneNumber", "PhotoUrl", "Surname" },
+                values: new object[] { 1, "Batı Ağıl", "Aragorn@gmail.com", "Aragorn", "12312312", "aragorn.img", "Arathorn" });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "City", "Email", "Name", "PhoneNumber", "PhotoUrl", "Surname" },
-                values: new object[,]
-                {
-                    { 1, "Batı Ağıl", "Aragorn@gmail.com", "Aragorn", "12312312", "aragorn.img", "Arathorn" },
-                    { 2, "Londra", "expecto@gmail.com", "Harry", "02222222", "harry.img", "Potter" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "IsAdmin", "Password", "Username" },
-                values: new object[,]
-                {
-                    { 1, true, "12345", "Gandalf" },
-                    { 2, false, "987654", "Frodo" },
-                    { 3, true, "00000", "Gimli" }
-                });
+                values: new object[] { 2, "Londra", "expecto@gmail.com", "Harry", "02222222", "harry.img", "Potter" });
 
             migrationBuilder.InsertData(
                 table: "CommercialActivities",
                 columns: new[] { "Id", "ActivityDate", "CustomerId", "Price", "ServiceDescription" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
-                    { 2, new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" },
+                    { 1, new DateTime(2022, 7, 15, 0, 0, 0, 0, DateTimeKind.Local), 1, 8800m, "Kırık Kılıç onarıldı" },
+                    { 2, new DateTime(2022, 7, 15, 0, 0, 0, 0, DateTimeKind.Local), 2, 2300m, "Baykuş satıldı" },
                     { 3, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10m, "Kılıç bilendi " },
                     { 4, new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 80m, "Kaymak birasi satıldı" }
                 });
@@ -363,9 +330,6 @@ namespace LinkBilgisayarProject.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserRefreshTokens");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "WeeklyReports");

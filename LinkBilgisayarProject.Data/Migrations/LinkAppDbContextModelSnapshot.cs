@@ -53,7 +53,7 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ActivityDate = new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 1,
                             Price = 8800m,
                             ServiceDescription = "Kırık Kılıç onarıldı"
@@ -61,7 +61,7 @@ namespace LinkBilgisayarProject.Data.Migrations
                         new
                         {
                             Id = 2,
-                            ActivityDate = new DateTime(2022, 7, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            ActivityDate = new DateTime(2022, 7, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             CustomerId = 2,
                             Price = 2300m,
                             ServiceDescription = "Baykuş satıldı"
@@ -167,71 +167,6 @@ namespace LinkBilgisayarProject.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "AdminId",
-                            ConcurrencyStamp = "eebec030-e715-415d-a60e-c7e736646a76",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "EditorId",
-                            ConcurrencyStamp = "94be797d-569c-4f10-b029-75804e0e8acc",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        });
-                });
-
-            modelBuilder.Entity("LinkBilgisayarProject.Core.Entites.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool?>("IsAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Password")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Username")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsAdmin = true,
-                            Password = "12345",
-                            Username = "Gandalf"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsAdmin = false,
-                            Password = "987654",
-                            Username = "Frodo"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IsAdmin = true,
-                            Password = "00000",
-                            Username = "Gimli"
-                        });
                 });
 
             modelBuilder.Entity("LinkBilgisayarProject.Core.Entites.UserApp", b =>

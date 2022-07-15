@@ -78,11 +78,11 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opti =>
 {
     opti.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-    {
+    { 
         ValidIssuer = tokenOptions.Issuer,
         ValidAudience = tokenOptions.Audience[0],
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
-
+        
         ValidateIssuerSigningKey = true,
         ValidateAudience = true,
         ValidateIssuer = true,

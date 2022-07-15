@@ -9,6 +9,5 @@ namespace LinkBilgisayarProject.Core.Entites
 {
     public class UserApp : IdentityUser
     {
-
     }
 }

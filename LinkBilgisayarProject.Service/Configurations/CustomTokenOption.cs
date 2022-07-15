@@ -13,6 +13,7 @@ namespace LinkBilgisayarProject.Service.Configurations
        public int AccessTokenExpiration { get; set; }
        public int RefreshTokenExpiration { get; set; }
        public string SecurityKey { get; set; }
-        
+        public string Role { get; set; }
+
     }
 }

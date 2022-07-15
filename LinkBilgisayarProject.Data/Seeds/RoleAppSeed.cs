@@ -13,7 +13,8 @@ namespace LinkBilgisayarProject.Data.Seeds
     {
         public void Configure(EntityTypeBuilder<RoleApp> builder)
         {
-            builder.HasData(new RoleApp { Id = "AdminId", Name = "Admin" , NormalizedName ="ADMIN" }, new RoleApp { Id = "EditorId", Name = "Editor", NormalizedName ="EDITOR" });
+            //builder.HasData(new RoleApp { Id = "AdminId", Name = "admin" , NormalizedName ="ADMIN" }, 
+            //    new RoleApp { Id = "EditorId", Name = "editor", NormalizedName ="EDITOR" });
         }
     }
 }

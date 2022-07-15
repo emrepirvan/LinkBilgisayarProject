@@ -2,6 +2,7 @@
 using LinkBilgisayarProject.Core.Dtos;
 using LinkBilgisayarProject.Core.Entites;
 using LinkBilgisayarProject.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +19,7 @@ namespace LinkBilgisayarProject.API.Controllers
             _mapper = mapper;
             _service = service;
         }
-
-
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpGet("GetCommercialActivityWithCustomer")]
         public async Task<IActionResult> GetCommercialActivityWithCustomer()
         {
@@ -28,6 +28,7 @@ namespace LinkBilgisayarProject.API.Controllers
             return Ok(CustomResponseDto<List<CommercialActivityWithCustomerDto>>.Success(200, commercialActivitiesWithCustomerDtos));
         }
         //---------------------------------------
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpGet]
         public async Task<IActionResult> All()
         {
@@ -35,7 +36,7 @@ namespace LinkBilgisayarProject.API.Controllers
             var commercialActivitiesDtos = _mapper.Map<List<CommercialActivityDto>>(commercialActivities.ToList());
             return Ok(CustomResponseDto<List<CommercialActivityDto>>.Success(200, commercialActivitiesDtos));
         }
-
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -43,8 +44,7 @@ namespace LinkBilgisayarProject.API.Controllers
             var commercialActivityDto = _mapper.Map<CommercialActivityDto>(commercialActivity);
             return CreateActionResult(CustomResponseDto<CommercialActivityDto>.Success(200, commercialActivityDto));
         }
-
-
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpPost]
         public async Task<IActionResult> Save(CommercialActivityDto commercialActivityDto)
         {
@@ -52,14 +52,14 @@ namespace LinkBilgisayarProject.API.Controllers
             var commercialActivitiesDto = _mapper.Map<CommercialActivityDto>(commercialActivity);
             return CreateActionResult(CustomResponseDto<CommercialActivityDto>.Success(201, commercialActivitiesDto));
         }
-
+        [Authorize(Roles = UserRoles.Admin + "," + UserRoles.Editor)]
         [HttpPut]
         public async Task<IActionResult> Update(CommercialActivityDto commercialActivityDto)
         {
             await _service.UpdateAsync(_mapper.Map<CommercialActivity>(commercialActivityDto));
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
-
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
@@ -67,6 +67,7 @@ namespace LinkBilgisayarProject.API.Controllers
             await _service.RemoveAsync(commercialActivity);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpDelete]
         public async Task<IActionResult> RemoveRange(int[] id)
         {

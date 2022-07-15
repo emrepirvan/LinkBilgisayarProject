@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LinkBilgisayarProject.Core.Entites
 {
     public class CommercialActivity 
-    { 
+    {
         public int Id { get; set; }
         public int? CustomerId { get; set; }
         public string? ServiceDescription { get; set; }
