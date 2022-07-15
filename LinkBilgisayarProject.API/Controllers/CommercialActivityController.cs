@@ -14,7 +14,7 @@ namespace LinkBilgisayarProject.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICommercialActivityService _service;
-        public CommercialActivityController(IMapper mapper, ICommercialActivityService service = null)
+        public CommercialActivityController(IMapper mapper, ICommercialActivityService service )
         {
             _mapper = mapper;
             _service = service;

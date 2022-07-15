@@ -15,12 +15,14 @@ namespace LinkBilgisayarProject.Service.Services
 {
     public class CustomerService : Service<Customer>, ICustomerService
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
         public CustomerService(IGenericRepository<Customer> repository, IUnitOfWork unitOfWork, ICustomerRepository customerRepository = null, IMapper mapper = null) : base(repository, unitOfWork)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public async Task<CustomerWithCommercialAcitivityDto> GetOneCustomerByIdWithCommercialActivitiesAsync(int customerId)
         {
@@ -33,5 +35,35 @@ namespace LinkBilgisayarProject.Service.Services
 
             return customerDto;
         }
+        public List<Customer> GetCustomerWithSamePhonebutDifferentName()
+        {
+            var customers =  _customerRepository.GetAll().AsQueryable();
+            var nums = customers.Select(x => x.PhoneNumber).ToList();
+
+
+            var SameNumPerson = new List<Customer>();
+            var DifNames = new List<Customer>();
+
+            foreach (var customer in customers)
+            {
+                int counter = 0;
+                for (int i = 0; i < nums.Count(); i++)
+                {
+                    if (customer.PhoneNumber == nums[i])
+                    {
+                        counter++;
+                    }
+                }
+                if (counter > 1)
+                {
+                    if (!(SameNumPerson.Select(x => x.Name).Contains(customer.Name)))
+                    {
+                        SameNumPerson.Add(customer);
+                    }  
+                }
+            }
+            return  SameNumPerson;
+        }
+
     }
 }

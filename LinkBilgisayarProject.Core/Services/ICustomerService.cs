@@ -11,5 +11,6 @@ namespace LinkBilgisayarProject.Core.Services
     public interface ICustomerService : IService<Customer>
     {
         public Task<CustomerWithCommercialAcitivityDto> GetOneCustomerByIdWithCommercialActivitiesAsync(int customerId);
+        public List<Customer> GetCustomerWithSamePhonebutDifferentName();
     }
 }
